@@ -1,6 +1,9 @@
 package com.rainbowt.ij_testingandrefactoringlegacycode
 
-class TripDAO {
+open class TripDAO {
+    fun tripsBy(user: User): List<Trip> {
+        return findTripsByUser(user)
+    }
 
     companion object {
         private var trips: List<Trip> = listOf()

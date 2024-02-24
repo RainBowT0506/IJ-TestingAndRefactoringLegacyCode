@@ -1,6 +1,8 @@
 package com.rainbowt.ij_testingandrefactoringlegacycode
 
-open class TripService {
+open class TripService(private val tripDAO: TripDAO) {
+
+
 
     @Throws(UserNotLoggedInException::class)
     fun getTripsByUser(user: User?, loggedInUser: User?): List<Trip> {
@@ -17,6 +19,6 @@ open class TripService {
     }
 
     open fun tripsBy(user: User): List<Trip> {
-        return TripDAO.findTripsByUser(user);
+        return tripDAO.tripsBy(user);
     }
 }
