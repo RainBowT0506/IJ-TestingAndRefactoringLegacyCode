@@ -7,22 +7,17 @@ import org.junit.Test
 
 
 class TripServiceTest {
-    private var _loggedInUser: User? = null
     private lateinit var tripService: TripService
 
     @Before
     fun setUp() {
         tripService = TestableTripService()
-        _loggedInUser = REGISTERED_USER
     }
 
     @Test(expected = UserNotLoggedInException::class)
     fun validate_the_logged_in_user() {
 
-        _loggedInUser = Companion.GUEST
-
-
-        tripService.getTripsByUser(ANY_USER)
+        tripService.getTripsByUser(ANY_USER, Companion.GUEST)
     }
 
     @Test(expected = UserNotLoggedInException::class)
@@ -31,7 +26,7 @@ class TripServiceTest {
             .friendWith(ANOTHER_USER)
             .withTripsTo(LONDON)
             .build()
-        val trips = tripService.getTripsByUser(stranger)
+        val trips = tripService.getTripsByUser(stranger, REGISTERED_USER)
 
         assertThat(trips).isEmpty()
     }
@@ -43,16 +38,12 @@ class TripServiceTest {
             .withTripsTo(LONDON, BARCELONA)
             .build()
 
-        val trips = tripService.getTripsByUser(friend)
+        val trips = tripService.getTripsByUser(friend, REGISTERED_USER)
 
         assertThat(trips).containsExactlyInAnyOrder(LONDON, BARCELONA)
     }
 
     private inner class TestableTripService : TripService() {
-
-        override fun loggedInUser(): User? {
-            return _loggedInUser
-        }
 
         override fun tripsBy(user: User): List<Trip> {
             return user.trips
