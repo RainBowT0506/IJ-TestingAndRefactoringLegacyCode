@@ -2,6 +2,7 @@ package com.rainbowt.ij_testingandrefactoringlegacycode
 
 class UserSession private constructor() {
     private var isUserLogged = false
+    private var user = User()
 
     companion object {
         // 使用伴生对象创建单例
@@ -27,6 +28,10 @@ class UserSession private constructor() {
 
     fun getLogged(): Boolean {
         return isUserLogged
+    }
+
+    fun getLoggedUser():User{
+        return user
     }
 }
 
