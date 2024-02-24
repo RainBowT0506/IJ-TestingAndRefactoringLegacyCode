@@ -1,13 +1,20 @@
 package com.rainbowt.ij_testingandrefactoringlegacycode
 
 class User {
+    fun addFriend(anotherUser: User) {
+        friends.toMutableList().add(anotherUser)
+    }
 
-    private var friends: List<User> = listOf()
+    fun addTrip(trip: Trip) {
+        trips.toMutableList().add(trip)
+    }
+
+    var friends: List<User> = listOf()
         get() = field
         set(value) {
             field = value
         }
-    private var trips: List<Trip> = listOf()
+    var trips: List<Trip> = listOf()
         get() = field
         set(value) {
             field = value

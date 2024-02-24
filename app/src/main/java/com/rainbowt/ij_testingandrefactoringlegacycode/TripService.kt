@@ -9,8 +9,8 @@ open class TripService {
         var isFriend = false
 
         user?.let {
-            for (friend in user.getFriends()) {
-                if (friend.equals(loggedUser)) {
+            for (friend in user.friends) {
+                if (friend == loggedUser) {
                     isFriend = true
                     break
                 }
