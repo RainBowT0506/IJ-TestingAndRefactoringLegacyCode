@@ -13,6 +13,7 @@ class TripServiceTest {
     @Before
     fun setUp() {
         tripService = TestableTripService()
+        _loggedInUser = REGISTERED_USER
     }
 
     @Test(expected = UserNotLoggedInException::class)
@@ -26,9 +27,6 @@ class TripServiceTest {
 
     @Test(expected = UserNotLoggedInException::class)
     fun return_no_trips_when_users_are_not_friends() {
-
-        _loggedInUser = REGISTERED_USER
-
         val stranger = User()
         stranger.addFriend(ANOTHER_USER)
         stranger.addFriend(REGISTERED_USER)
@@ -37,6 +35,17 @@ class TripServiceTest {
         val trips = tripService.getTripsByUser(stranger)
 
         assertThat(trips).isEmpty()
+    }
+
+    @Test(expected = UserNotLoggedInException::class)
+    fun return_trips_when_users_are_friend() {
+        val friend = User()
+        friend.addFriend(ANOTHER_USER)
+        friend.addFriend(REGISTERED_USER)
+        friend.addTrip(LONDON)
+        friend.addTrip(BARCELONA)
+        val trips = tripService.getTripsByUser(friend)
+
         assertThat(trips).containsExactlyInAnyOrder(LONDON, BARCELONA)
     }
 
