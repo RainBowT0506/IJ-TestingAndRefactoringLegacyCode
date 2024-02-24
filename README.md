@@ -1,4 +1,5 @@
 實作影片 [Testing and Refactoring Legacy Code](https://www.youtube.com/watch?v=LSqbXorkyfQ)
+
 Github [IJ-TestingAndRefactoringLegacyCode](https://github.com/RainBowT0506/IJ-TestingAndRefactoringLegacyCode)
 
 # Introduction
@@ -37,7 +38,8 @@ Github [IJ-TestingAndRefactoringLegacyCode](https://github.com/RainBowT0506/IJ-T
  
 # Deep Shallow Branches
 ## 深淺分支概念
-![image](https://hackmd.io/_uploads/By2bbxHhp.png)
+![image](https://github.com/RainBowT0506/IJ-TestingAndRefactoringLegacyCode/assets/109667537/0e175066-05be-4ac3-8bd7-db361c5ca669)
+![image](https://github.com/RainBowT0506/IJ-TestingAndRefactoringLegacyCode/assets/109667537/aa9c1904-3cac-426d-be36-1a9ebcfc38a9)
 
 - 深淺分支是指在程式碼中的不同路徑，淺分支是指從呼叫公開方法到退出該方法所需的最短路徑。
 - 這種方法可以幫助開發者在理解程式碼時逐步建立知識，從最短的分支開始，一步步地擴展對程式碼的了解。
