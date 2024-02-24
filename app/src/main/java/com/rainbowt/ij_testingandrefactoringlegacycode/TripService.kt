@@ -23,6 +23,10 @@ open class TripService {
         } ?: throw UserNotLoggedInException()
     }
 
+    open fun tripsBy(user: User): List<Trip> {
+        return TripDAO.findTripsByUser(user);
+    }
+
     open fun loggedInUser(): User? {
         return UserSession.getInstance().getLoggedUser()
     }

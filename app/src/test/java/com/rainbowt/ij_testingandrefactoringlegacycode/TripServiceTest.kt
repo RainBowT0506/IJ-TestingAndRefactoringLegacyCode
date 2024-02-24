@@ -31,17 +31,23 @@ class TripServiceTest {
 
         val stranger = User()
         stranger.addFriend(ANOTHER_USER)
+        stranger.addFriend(REGISTERED_USER)
         stranger.addTrip(LONDON)
+        stranger.addTrip(BARCELONA)
         val trips = tripService.getTripsByUser(stranger)
 
         assertThat(trips).isEmpty()
-
+        assertThat(trips).containsExactlyInAnyOrder(LONDON, BARCELONA)
     }
 
     private inner class TestableTripService : TripService() {
 
         override fun loggedInUser(): User? {
             return _loggedInUser
+        }
+
+        override fun tripsBy(user: User): List<Trip> {
+            return user.trips
         }
     }
 
@@ -51,5 +57,6 @@ class TripServiceTest {
         private val REGISTERED_USER = User()
         private val ANOTHER_USER = User()
         private val LONDON = Trip()
+        private val BARCELONA = Trip()
     }
 }
